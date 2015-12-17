@@ -2,7 +2,7 @@
 (function() {
   var Util;
 
-  Util = require('../util.coffee');
+  Util = require('../util');
 
   module.exports = {
     parseLegacyLayerName: function() {

@@ -6,7 +6,7 @@
 
   _ = require('lodash');
 
-  TypeTool = require('./typetool.coffee');
+  TypeTool = require('./typetool');
 
   module.exports = LegacyTypeTool = (function(_super) {
     __extends(LegacyTypeTool, _super);

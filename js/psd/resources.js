@@ -2,7 +2,7 @@
 (function() {
   var Resource, Resources;
 
-  Resource = require('./resource.coffee');
+  Resource = require('./resource');
 
   module.exports = Resources = (function() {
     function Resources(file) {

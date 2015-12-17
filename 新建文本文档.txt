@@ -1,0 +1,15 @@
+http://www.doc88.com/p-3498097691677.html
+http://www.infoq.com/cn/news/2013/08/aliadc-psd2cms
+https://github.com/starsun/PSD-Common-API
+https://github.com/starsun/PSD2HTML
+https://www.npmjs.com/package/parse-engine-data
+https://github.com/imgqb/parseEngineData
+https://github.com/imgqb/psd-spec-translate
+https://github.com/imgqb/psd-parser
+https://github.com/imgqb/PSD2HTML
+
+
+
+
+
+http://sc.chinaz.com/info/130502481723.htm

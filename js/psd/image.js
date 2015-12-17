@@ -6,11 +6,11 @@
 
   Module = require('coffeescript-module').Module;
 
-  ImageFormat = require('./image_format.coffee');
+  ImageFormat = require('./image_format');
 
-  ImageMode = require('./image_mode.coffee');
+  ImageMode = require('./image_mode');
 
-  Export = require('./image_export.coffee');
+  Export = require('./image_export');
 
   module.exports = Image = (function(_super) {
     var COMPRESSIONS, attr, _fn, _i, _len, _ref;

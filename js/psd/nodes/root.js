@@ -6,11 +6,11 @@
 
   _ = require('lodash');
 
-  Node = require('../node.coffee');
+  Node = require('../node');
 
-  Group = require('./group.coffee');
+  Group = require('./group');
 
-  Layer = require('./layer.coffee');
+  Layer = require('./layer');
 
   module.exports = Root = (function(_super) {
     __extends(Root, _super);

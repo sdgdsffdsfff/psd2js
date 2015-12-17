@@ -9,21 +9,21 @@
   module.exports = Layer = (function(_super) {
     __extends(Layer, _super);
 
-    Layer.includes(require('./layer/position_channels.coffee'));
+    Layer.includes(require('./layer/position_channels'));
 
-    Layer.includes(require('./layer/blend_modes.coffee'));
+    Layer.includes(require('./layer/blend_modes'));
 
-    Layer.includes(require('./layer/mask.coffee'));
+    Layer.includes(require('./layer/mask'));
 
-    Layer.includes(require('./layer/blending_ranges.coffee'));
+    Layer.includes(require('./layer/blending_ranges'));
 
-    Layer.includes(require('./layer/name.coffee'));
+    Layer.includes(require('./layer/name'));
 
-    Layer.includes(require('./layer/info.coffee'));
+    Layer.includes(require('./layer/info'));
 
-    Layer.includes(require('./layer/helpers.coffee'));
+    Layer.includes(require('./layer/helpers'));
 
-    Layer.includes(require('./layer/channel_image.coffee'));
+    Layer.includes(require('./layer/channel_image'));
 
     function Layer(file, header) {
       this.file = file;

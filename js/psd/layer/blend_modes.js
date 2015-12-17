@@ -2,7 +2,7 @@
 (function() {
   var BlendMode;
 
-  BlendMode = require('../blend_mode.coffee');
+  BlendMode = require('../blend_mode');
 
   module.exports = {
     parseBlendModes: function() {

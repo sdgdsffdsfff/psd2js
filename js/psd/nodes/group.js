@@ -6,7 +6,7 @@
 
   _ = require('lodash');
 
-  Node = require('../node.coffee');
+  Node = require('../node');
 
   module.exports = Group = (function(_super) {
     __extends(Group, _super);

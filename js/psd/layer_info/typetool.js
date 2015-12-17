@@ -8,9 +8,8 @@
 
   parseEngineData = require('parse-engine-data');
 
-  LayerInfo = require('../layer_info.coffee');
-
-  Descriptor = require('../descriptor.coffee');
+  LayerInfo = require('../layer_info');
+  Descriptor = require('../descriptor');
 
   module.exports = TextElements = (function(_super) {
     var COORDS_VALUE, TRANSFORM_VALUE;

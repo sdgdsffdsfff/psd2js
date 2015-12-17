@@ -6,9 +6,9 @@
 
   _ = require('lodash');
 
-  Image = require('./image.coffee');
+  Image = require('./image');
 
-  ImageFormat = require('./image_format.coffee');
+  ImageFormat = require('./image_format');
 
   module.exports = ChannelImage = (function(_super) {
     __extends(ChannelImage, _super);

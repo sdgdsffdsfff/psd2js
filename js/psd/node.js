@@ -11,11 +11,11 @@
   module.exports = Node = (function(_super) {
     __extends(Node, _super);
 
-    Node.includes(require('./nodes/ancestry.coffee'));
+    Node.includes(require('./nodes/ancestry'));
 
-    Node.includes(require('./nodes/search.coffee'));
+    Node.includes(require('./nodes/search'));
 
-    Node.includes(require('./nodes/build_preview.coffee'));
+    Node.includes(require('./nodes/build_preview'));
 
     Node.PROPERTIES = ['name', 'left', 'right', 'top', 'bottom', 'height', 'width'];
 

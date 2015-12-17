@@ -2,7 +2,7 @@
 (function() {
   var Color;
 
-  Color = require('../color.coffee');
+  Color = require('../color');
 
   module.exports = {
     setCmykChannels: function() {
