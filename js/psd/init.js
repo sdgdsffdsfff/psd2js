@@ -1,27 +1,22 @@
-var RSVP, fs;
+import fs form 'fs'
+import RSVP form 'rsvp'
 
-fs = require('fs');
-RSVP = require('rsvp');
-
-module.exports = {
+exports {
 	extended: function(PSD) {
-	  this.fromFile = function(file) {
-		return new PSD(fs.readFileSync(file));
-	  };
-	  return this.open = function(file) {
-		return new RSVP.Promise(function(resolve, reject) {
-		  return fs.readFile(file, (function(_this) {
-			return function(err, data) {
-			  var psd;
-			  if (err) {
-				return reject(err);
-			  }
-			  psd = new PSD(data);
-			  psd.parse();
-			  return resolve(psd);
-			};
-		  })(this));
-		});
-	  };
+		this.fromFile = function(file) {
+			return new PSD(fs.readFileSync(file));
+		};
+		return this.open = function(file) {
+			return new RSVP.Promise(function(resolve, reject) {
+				return fs.readFile(file, function(err, data) {
+					if (err) {
+						return reject(err);
+					}
+					let psd = new PSD(data);
+					psd.parse();
+					return resolve(psd);
+				});
+			});
+		};
 	}
-};
+}

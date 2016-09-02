@@ -1,3 +1,5 @@
-module.exports = {
-    PNG: require('./image_exports/png')
-};
+import PNG from './image_exports/png'
+
+export {
+    PNG: PNG,
+}

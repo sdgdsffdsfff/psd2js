@@ -1,5 +1,7 @@
+import ResourceSection from './resource_section'
 
-var fontMap = {
+// 字体映射
+let fontMap = {
 	'MicrosoftYaHei-Bold': 'Microsoft YaHei',
 	'MicrosoftYaHei': 'Microsoft YaHei',
 	'黑体': 'SimHei',
@@ -9,27 +11,25 @@ var fontMap = {
 	'楷体': 'KaiTi',
 	'幼圆': 'YouYuan',
 };
-var Font = (function() {
-    Resource.Section = require('./resource_section');
-
-    function Resource(file) {
-        this.file = file;
+class Resource {
+	constructor(file) {
+		this.file = file;
         this.id = null;
         this.type = null;
         this.length = 0;
-    }
-
-    Resource.prototype.parse = function() {
-        var nameLength;
-        this.type = this.file.readString(4);
+	}
+	get Section() {
+		return ResourceSection;
+	}
+	/**
+	 * 解析
+	 */
+	parse() {
+		this.type = this.file.readString(4);
         this.id = this.file.readShort();
-        nameLength = Util.pad2(this.file.readByte() + 1) - 1;
+        let nameLength = Util.pad2(this.file.readByte() + 1) - 1;
         this.name = this.file.readString(nameLength);
         return this.length = Util.pad2(this.file.readInt());
-    };
-
-    return Resource;
-
-})();
-
-module.exports = Resource;
+	}
+}
+exports Font = Resource;

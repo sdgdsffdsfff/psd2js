@@ -1,6 +1,28 @@
-  var ResourceSection, _;
+import _ from 'lodash'
+import layer_comps from './resources/layer_comps'
 
-  _ = require('lodash');
+class ResourceSection {
+	get [RESOURCES]() {
+		return layer_comps;
+	}
+	factory() {
+		for (let i = 0, len = RESOURCES.length; i < len; i++) {
+			let Section = RESOURCES[i];
+			if (Section.prototype.id !== resource.id) {
+				continue;
+			}
+			return _.tap(new Section(resource), function(s) {
+				return s.parse();
+			});
+		}
+		return null;
+	}
+}
+
+
+var ResourceSection, _;
+
+  _ = require();
 
   module.exports = ResourceSection = (function() {
     var RESOURCES;

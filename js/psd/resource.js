@@ -1,26 +1,23 @@
-var Util = require('./util');
+import Util from './util'
+import resourceSection from './resource_section'
 
-var Resource = (function() {
-    Resource.Section = require('./resource_section');
-
-    function Resource(file) {
-        this.file = file;
+class Resource {
+	get Section() {
+		return resourceSection;
+	}
+	constructor(file) {
+		this.file = file;
         this.id = null;
         this.type = null;
         this.length = 0;
-    }
-
-    Resource.prototype.parse = function() {
+	}
+	parse() {
         var nameLength;
         this.type = this.file.readString(4);
         this.id = this.file.readShort();
         nameLength = Util.pad2(this.file.readByte() + 1) - 1;
         this.name = this.file.readString(nameLength);
         return this.length = Util.pad2(this.file.readInt());
-    };
-
-    return Resource;
-
-})();
-
-module.exports = Resource;
+    }
+}
+export Resource

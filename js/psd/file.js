@@ -1,14 +1,16 @@
-var Color, File, Util, iconv, jspack, __hasProp = {}.hasOwnProperty;
+import { jspack } from 'jspack'
+import iconv from 'iconv-lite'
+import Color from './color'
+import Util from './util'
 
-jspack = require('jspack').jspack;
-iconv = require('iconv-lite');
-Color = require('./color');
-Util = require('./util');
-
-module.exports = File = (function() {
-    var FORMATS, format, info, _fn;
-
-    FORMATS = {
+exports class File {
+	constructor(data) {
+        this.data = data;
+        this.pos = 0;
+    }
+	/*
+	var __hasProp = {}.hasOwnProperty;
+    var FORMATS = {
         Int: {
             code: '>i',
             length: 4
@@ -39,43 +41,56 @@ module.exports = File = (function() {
         }
     };
 
-    _fn = function(format, info) {
+    var _fn = function(format, info) {
         return File.prototype["read" + format] = function() {
             return this.readf(info.code, info.length)[0];
         };
     };
-    for (format in FORMATS) {
+    for (var format in FORMATS) {
         if (!__hasProp.call(FORMATS, format)) continue;
-        info = FORMATS[format];
+        var info = FORMATS[format];
         _fn(format, info);
     }
-
-    function File(data) {
-        this.data = data;
-        this.pos = 0;
+	*/
+	readInt() {
+        return this.readf('>i', 4)[0];
     }
-
-    File.prototype.tell = function() {
+	readUInt() {
+        return this.readf('>I', 4)[0];
+    }
+	readShort() {
+        return this.readf('>h', 2)[0];
+    }
+	readUShort() {
+        return this.readf('>H', 2)[0];
+    }
+	readFloat() {
+        return this.readf('>f', 4)[0];
+    }
+	readDouble() {
+        return this.readf('>d', 8)[0];
+    }
+	readLongLong() {
+        return this.readf('>q', 8)[0];
+    }
+	tell() {
         return this.pos;
-    };
-
-    File.prototype.read = function(length) {
+    }
+    read(length) {
         var i, _i, _results;
-        _results = [];
+        let _results = [];
         for (i = _i = 0; 0 <= length ? _i < length: _i > length; i = 0 <= length ? ++_i: --_i) {
             _results.push(this.data[this.pos++]);
         }
         return _results;
-    };
-
-    File.prototype.readf = function(format, len) {
+    }
+	readf(format, len) {
         if (len == null) {
             len = null;
         }
         return jspack.Unpack(format, this.read(len || jspack.CalcLength(format)));
-    };
-
-    File.prototype.seek = function(amt, rel) {
+    }
+	seek(amt, rel) {
         if (rel == null) {
             rel = false;
         }
@@ -84,51 +99,41 @@ module.exports = File = (function() {
         } else {
             return this.pos = amt;
         }
-    };
-
-    File.prototype.readString = function(length) {
+    }
+	readString(length) {
         return String.fromCharCode.apply(null, this.read(length)).replace(/\u0000/g, "");
-    };
-
-    File.prototype.readUnicodeString = function(length) {
+    }
+	readUnicodeString(length) {
         if (length == null) {
             length = null;
         }
         length || (length = this.readInt());
         return iconv.decode(new Buffer(this.read(length * 2)), 'utf-16be').replace(/\u0000/g, "");
-    };
-
-    File.prototype.readByte = function() {
+    }
+	readByte() {
         return this.read(1)[0];
-    };
-
-    File.prototype.readBoolean = function() {
+    }
+	readBoolean() {
         return this.readByte() !== 0;
-    };
-
-    File.prototype.readSpaceColor = function() {
-        var colorComponent, colorSpace, i, _i;
-        colorSpace = this.readShort();
-        for (i = _i = 0; _i < 4; i = ++_i) {
+    }
+	readSpaceColor() {
+        let colorComponent;
+        let colorSpace = this.readShort();
+        for (let i = _i = 0; _i < 4; i = ++_i) {
             colorComponent = this.readShort() >> 8;
         }
         return {
             colorSpace: colorSpace,
             components: colorComponent
         };
-    };
-
-    File.prototype.readPathNumber = function() {
-        var a, arr, b, b1, b2, b3;
-        a = this.readByte();
-        arr = this.read(3);
-        b1 = arr[0] << 16;
-        b2 = arr[1] << 8;
-        b3 = arr[2];
-        b = b1 | b2 | b3;
+    }
+	readPathNumber() {
+        let a = this.readByte();
+        let arr = this.read(3);
+        let b1 = arr[0] << 16;
+        let b2 = arr[1] << 8;
+        let b3 = arr[2];
+        let b = b1 | b2 | b3;
         return parseFloat(a, 10) + parseFloat(b / Math.pow(2, 24), 10);
     };
-
-    return File;
-
-})();
+}

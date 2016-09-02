@@ -1,11 +1,14 @@
-var fs = require('fs'),
-	PNG = require('pngjs').PNG,
-	RSVP = require('rsvp');
+import fs from 'fs'
+import { PNG } from 'pngjs'
+import RSVP from 'rsvp'
 
-module.exports = {
+/**
+ * 图像PNG导出格式
+ */
+exports {
     // 生成PNG
     toPng: function() {
-        var png = new PNG({
+        let png = new PNG({
             filterType: 4,
             width: this.width(),
             height: this.height()
@@ -15,10 +18,9 @@ module.exports = {
     },
     // 保存为PNG
     saveAsPng: function(output) {
-        return new RSVP.Promise((function(_this) {
-            return function(resolve, reject) {
-                return _this.toPng().pack().pipe(fs.createWriteStream(output)).on('finish', resolve);
-            };
-        })(this));
+		let that = this;
+        return new RSVP.Promise(function(resolve, reject) {
+			return that.toPng().pack().pipe(fs.createWriteStream(output)).on('finish', resolve);
+        });
     }
 };

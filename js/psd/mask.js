@@ -1,20 +1,27 @@
-// 图层蒙版
-var Mask = (function() {
-    function Mask(file) {
-        this.file = file;
+/**
+ * 图层蒙版
+ */
+class Mask {
+	/**
+	 * 构造函数
+	 * @param {Sting} file
+	 */
+	constructor(file) {
+		this.file = file;
         this.top = 0;
         this.right = 0;
         this.bottom = 0;
         this.left = 0;
-    }
-
-    Mask.prototype.parse = function() {
-        var maskEnd;
-        this.size = this.file.readInt();
+	}
+	/**
+	 * 解析文件
+	 */
+	parse() {
+		this.size = this.file.readInt();
         if (this.size === 0) {
             return this;
         }
-        maskEnd = this.file.tell() + this.size;
+		let maskEnd = this.file.tell() + this.size;
         this.top = this.file.readInt();
         this.left = this.file.readInt();
         this.bottom = this.file.readInt();
@@ -28,10 +35,12 @@ var Mask = (function() {
         this.flags = this.file.readByte();
         this.file.seek(maskEnd);
         return this;
-    };
-
-    Mask.prototype['export'] = function() {
-        if (this.size === 0) {
+	}
+	/**
+	 * 导出
+	 */
+	export() {
+		if (this.size === 0) {
             return {};
         }
         return {
@@ -46,9 +55,6 @@ var Mask = (function() {
             disabled: this.disabled,
             invert: this.invert
         };
-    };
-	
-    return Mask;
-})();
-
-module.exports = Mask;
+	}
+}
+exports Mask
